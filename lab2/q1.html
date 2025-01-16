@@ -1,0 +1,56 @@
+<html>
+    <head>
+        <title>Student Biodata</title>
+        <link rel="stylesheet" href="q1.css">
+    </head>
+    <body>
+        <div class="container">
+        <h2>Student Biodata</h2>
+        <form>
+            <table>
+                <tr>
+                    <td><label for="name">Full Name :</label></td>
+                    <td><input type="text" required></td>
+                </tr>
+                <tr>
+                    <td><label for="dob">Date of Birth :</label></td>
+                    <td><input type="date" required></td>                   
+                </tr>
+                <tr>
+                    <td><label for="gender">Gender :</label></td>
+                    <td>
+                        <input type="radio" name="gender" required>
+                        <label for="male">Male</label>
+                        <input type="radio" name="gender" required>
+                        <label for="female">Female</label>                 
+                    </td>                     
+                </tr>
+                <tr>
+                    <td><label for="address">Address :</label></td>
+                    <td><textarea rows="4" required></textarea></td>
+                </tr>
+                <tr>
+                    <td><label for="contact">Contact Number:</label></td>
+                    <td><input type="tel" required></td>
+                </tr>
+                <tr>
+                    <td><label for="courses">Select Courses:</label></td>
+                    <td>
+                        <input type="checkbox">
+                        <label for="course1">English</label><br>
+                        <input type="checkbox">
+                        <label for="course2">Mathematics</label><br>
+                        <input type="checkbox">
+                        <label for="course3">Science</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <button type="submit">Submit</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,30 @@
+body {
+    background-color: #f8f9fa;
+}
+
+.container {
+    margin-top: 30px;
+}
+
+.carousel-item {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.table th, .table td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.carousel-caption h3 {
+    font-size: 1.8rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+}
+
+
+.timetable {
+    margin-top: 40px; 
+}
