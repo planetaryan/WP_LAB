@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <title>Grades</title>
+        <script src="q3.js"></script>
+        <link rel="stylesheet" href="q3.css">
+    </head>
+    <body>
+        <h1>Get your grade!</h1>
+        <h3>Enter marks out of 100</h3>
+        <div class="subject" id="dl">
+            Deep Learning<br>
+            <input type="number" min="0" max="100" class="marks">
+        </div>
+        <div class="subject" id="pcap">
+            Parallel Computer Architecture and Programming<br>
+            <input type="number" min="0" max="100" class="marks">
+        </div>
+        <div class="subject" id="eefm">
+            Engineering Econmics and Financial Management <br>
+            <input type="number" min="0" max="100" class="marks">
+        </div>
+        <div class="subject" id="matlab">
+            MATLAB for Engineers<br>
+            <input type="number" min="0" max="100" class="marks">
+        </div>
+        <button onclick="calc_avg()">Submit</button>
+        
+        <h3 id="avg"></h3>
+        <h3 id="grade"></h3>
+    </body>
+</html>

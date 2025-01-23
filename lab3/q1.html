@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <title>Online Quiz</title>
+        <link rel="stylesheet" href="q1.css">
+    </head>
+    <body>
+        <h1>Can you answer these questions?</h1>
+        <div class="question" id="q1">
+            Q1. Who is the president of the United States?<br>
+            <input type="radio" name="q1">Elon Musk
+            <input type="radio" name="q1">Donald Trump
+            <input type="radio" name="q1">Joe Biden
+            <input type="radio" name="q1">Barack Obama
+        </div>
+        <div class="question" id="q2">
+            Q2. When is the Indian Republic Day celebrated?<br>
+            <input type="radio" name="q2">26th January
+            <input type="radio" name="q2">16th February
+            <input type="radio" name="q2">8th March
+            <input type="radio" name="q2">20th April           
+        </div>
+        <div class="question" id="q3">
+            Q3. What is the full form of MIT?<br>
+            <input type="radio" name="q3">Manipal Institute of Technology
+            <input type="radio" name="q3">Massachusetts Institute of Technology
+            <input type="radio" name="q3">Mahindra Indian Telephones
+            <input type="radio" name="q3">Madgaon Imperial Tea         
+        </div>
+
+        <button onclick="checkAns()" id="btn">Submit</button>
+        <div id="score"></div>
+        <script src="q1.js"></script>
+
+    </body>
+</html>
