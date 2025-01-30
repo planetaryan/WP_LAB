@@ -1,0 +1,54 @@
+/* Basic reset for the page */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Container for the input and card halves */
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+/* Left half: Form for user input */
+.input-container {
+    width: 50%;
+    padding: 20px;
+    background-color: #f0f0f0;
+}
+
+/* Right half: Card display */
+.card-container {
+    width: 50%;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+}
+
+.card {
+    width: 80%;
+    height: 80%;
+    border: 2px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+}
+
+.card-text {
+    font-size: 20px;
+    text-align: center;
+    font-family: Arial;
+}
+
+.card img {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}

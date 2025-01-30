@@ -1,0 +1,20 @@
+/* Alternate row color styling */
+table tr:nth-child(odd) {
+    background-color: lightblue;
+}
+
+table tr:nth-child(even) {
+    background-color: lightcyan;
+}
+
+table td {
+    padding: 10px;
+    text-align: center;
+}
+
+/* Styling the container */
+.table-container {
+    width: auto;
+    margin: 20px;
+    position: relative; /* To ensure animation works */
+}
