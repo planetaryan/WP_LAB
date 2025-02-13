@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Information Form</title>
+    <style>
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f9f9f9;
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        width: 55%;
+        margin: 40px auto;
+        background-color: #ffffff;
+        padding: 35px;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+      }
+
+      h2 {
+        text-align: center;
+        color: #2d2d2d;
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+
+      label {
+        font-size: 15px;
+        margin-bottom: 6px;
+        display: block;
+        color: #666;
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        padding: 12px;
+        margin: 8px 0;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        font-size: 16px;
+        box-sizing: border-box;
+      }
+
+      input[type="button"] {
+        background-color: #008cba;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        padding: 12px 25px;
+        border-radius: 8px;
+        transition: background-color 0.3s;
+      }
+
+      input[type="button"]:hover {
+        background-color: #007b8d;
+      }
+
+      #result {
+        margin-top: 25px;
+      }
+
+      .label {
+        font-weight: 600;
+        font-size: 16px;
+        color: #333;
+      }
+
+      .output {
+        border: 1px solid #ddd;
+        padding: 15px;
+        margin-top: 12px;
+        background-color: #f8f8f8;
+        font-size: 16px;
+      }
+
+      #chartContainer {
+        text-align: center;
+        margin-top: 30px;
+      }
+
+      canvas {
+        border-radius: 50%;
+        background-color: #f1f1f1;
+        margin: 0 auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Fill Out the Student Details</h2>
+      <form id="studentForm">
+        <label for="name">Full Name</label>
+        <input
+          type="text"
+          id="name"
+          placeholder="Enter your full name"
+          required
+        />
+
+        <label for="dob">Date of Birth</label>
+        <input type="date" id="dob" required />
+
+        <label for="address">Address</label>
+        <textarea
+          id="address"
+          placeholder="Enter your address"
+          rows="4"
+          required
+        ></textarea>
+
+        <label for="contact">Contact Number</label>
+        <input
+          type="text"
+          id="contact"
+          placeholder="Enter your contact number"
+          required
+        />
+
+        <label for="email">Email Address</label>
+        <input
+          type="email"
+          id="email"
+          placeholder="Enter your email address"
+          required
+        />
+
+        <label for="english">Marks in English</label>
+        <input
+          type="number"
+          id="english"
+          placeholder="Enter marks out of 100"
+          min="0"
+          max="100"
+          required
+        />
+
+        <label for="physics">Marks in Physics</label>
+        <input
+          type="number"
+          id="physics"
+          placeholder="Enter marks out of 100"
+          min="0"
+          max="100"
+          required
+        />
+
+        <label for="chemistry">Marks in Chemistry</label>
+        <input
+          type="number"
+          id="chemistry"
+          placeholder="Enter marks out of 100"
+          min="0"
+          max="100"
+          required
+        />
+
+        <input type="button" value="Submit Details" onclick="submitForm()" />
+      </form>
+
+      <div id="result">
+        <label class="label">Student Information:</label>
+        <div id="detailsOutput" class="output"></div>
+
+        <label class="label">Calculated Percentage:</label>
+        <div id="percentageOutput" class="output"></div>
+      </div>
+
+      <div id="chartContainer">
+        <canvas id="percentageChart" width="250" height="250"></canvas>
+      </div>
+    </div>
+
+    <script>
+      function submitForm() {
+        const name = document.getElementById("name").value;
+        const dob = document.getElementById("dob").value;
+        const address = document.getElementById("address").value;
+        const contact = document.getElementById("contact").value;
+        const email = document.getElementById("email").value;
+        const english = parseInt(document.getElementById("english").value);
+        const physics = parseInt(document.getElementById("physics").value);
+        const chemistry = parseInt(document.getElementById("chemistry").value);
+
+        const totalMarks = english + physics + chemistry;
+        const totalSubjects = 3;
+        const percentage = (totalMarks / (totalSubjects * 100)) * 100;
+
+        const detailsOutput = `
+            Name: ${name}<br>
+            Date of Birth: ${dob}<br>
+            Address: ${address}<br>
+            Contact Number: ${contact}<br>
+            Email Address: ${email}<br>
+            English Marks: ${english}<br>
+            Physics Marks: ${physics}<br>
+            Chemistry Marks: ${chemistry}<br>
+        `;
+        document.getElementById("detailsOutput").innerHTML = detailsOutput;
+
+        document.getElementById(
+          "percentageOutput"
+        ).innerHTML = `Your Percentage: ${percentage.toFixed(2)}%`;
+
+        drawPieChart(percentage);
+      }
+
+      function drawPieChart(percentage) {
+        const ctx = document.getElementById("percentageChart").getContext("2d");
+
+        let color;
+        if (percentage > 80) {
+          color = "#4CAF50";
+        } else if (percentage <= 80 && percentage > 40) {
+          color = "#FFEB3B";
+        } else {
+          color = "#F44336";
+        }
+
+        const data = {
+          labels: ["Percentage"],
+          datasets: [
+            {
+              data: [percentage, 100 - percentage],
+              backgroundColor: [color, "#e0e0e0"],
+              borderWidth: 1,
+            },
+          ],
+        };
+
+        const options = {
+          responsive: true,
+          cutoutPercentage: 70,
+          animation: {
+            animateRotate: true,
+            animateScale: true,
+          },
+        };
+
+        if (window.chart) {
+          window.chart.destroy();
+        }
+
+        window.chart = new Chart(ctx, {
+          type: "pie",
+          data: data,
+          options: options,
+        });
+      }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </body>
+</html>

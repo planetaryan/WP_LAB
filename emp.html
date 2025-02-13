@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Employee Promotion Eligibility</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #e9f1f7;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      .form-container {
+        background-color: #ffffff;
+        padding: 35px;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        width: 380px;
+        text-align: center;
+      }
+
+      h2 {
+        color: #333;
+        font-size: 26px;
+        margin-bottom: 20px;
+      }
+
+      label {
+        font-size: 15px;
+        color: #555;
+        margin-bottom: 10px;
+        display: block;
+      }
+
+      select,
+      input[type="date"],
+      button {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 15px;
+        box-sizing: border-box;
+      }
+
+      button {
+        background-color: #4caf50;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        border: none;
+        transition: background-color 0.3s ease;
+      }
+
+      button:hover {
+        background-color: #45a049;
+      }
+
+      #result {
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+      }
+
+      .error {
+        color: red;
+        font-size: 14px;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-container">
+      <h2>Check Your Promotion Eligibility</h2>
+      <form id="promotionForm">
+        <label for="employeeId">Select Employee ID:</label>
+        <select id="employeeId" required>
+          <option value="">Choose an ID</option>
+          <option value="101">E101</option>
+          <option value="102">E102</option>
+          <option value="103">E103</option>
+          <option value="104">E104</option>
+        </select>
+
+        <label for="doj">Date of Joining:</label>
+        <input type="date" id="doj" required />
+
+        <button type="button" onclick="checkEligibility()">
+          Check Eligibility
+        </button>
+
+        <div id="result"></div>
+        <div class="error" id="error"></div>
+      </form>
+    </div>
+
+    <script>
+      function checkEligibility() {
+        const employeeId = document.getElementById("employeeId").value;
+        const doj = document.getElementById("doj").value;
+        const errorElement = document.getElementById("error");
+        const resultElement = document.getElementById("result");
+
+        errorElement.textContent = "";
+        resultElement.textContent = "";
+
+        if (!employeeId || !doj) {
+          errorElement.textContent =
+            "Please select both an employee ID and a date of joining.";
+          return;
+        }
+
+        const joiningDate = new Date(doj);
+        const currentDate = new Date();
+        const experience =
+          currentDate.getFullYear() - joiningDate.getFullYear();
+        const monthDifference = currentDate.getMonth() - joiningDate.getMonth();
+
+        if (
+          monthDifference < 0 ||
+          (monthDifference === 0 &&
+            currentDate.getDate() < joiningDate.getDate())
+        ) {
+          experience--;
+        }
+
+        if (experience > 5) {
+          resultElement.textContent = "YES, you are eligible!";
+          resultElement.style.color = "green";
+        } else {
+          resultElement.textContent = "NO, you are not eligible.";
+          resultElement.style.color = "red";
+        }
+      }
+    </script>
+  </body>
+</html>
