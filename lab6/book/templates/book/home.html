@@ -1,0 +1,25 @@
+<!-- book/templates/book/home.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ book.title }}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'book/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>{{ book.title }}</h1>
+        <h2>By {{ book.author }}</h2>
+        <!-- book/templates/book/home.html -->
+        <img src="{% static 'book/bookcover.jpeg' %}" alt="Cover Image" width="200px">
+
+        <div class="links">
+            <a href="{% url 'metadata' %}">Metadata</a> |
+            <a href="{% url 'reviews' %}">Reviews</a> |
+            <a href="{% url 'publisher_info' %}">Publisher Info</a>
+        </div>
+    </div>
+</body>
+</html>

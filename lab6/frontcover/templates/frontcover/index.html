@@ -1,0 +1,28 @@
+<!-- frontcover/templates/frontcover/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magazine Cover Generator</title>
+    
+    <!-- Add this line to load the static files -->
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'frontcover/styles.css' %}">
+</head>
+<body>
+    <h1>Generate Your Magazine Cover</h1>
+    
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Generate Cover</button>
+    </form>
+
+    {% if form.is_valid %}
+        <h2>Your Magazine Cover</h2>
+        <img src="{{ cover_url }}" alt="Magazine Cover" />
+    {% endif %}
+</body>
+</html>
