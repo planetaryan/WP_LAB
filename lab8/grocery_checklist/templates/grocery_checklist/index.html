@@ -1,0 +1,62 @@
+<!-- grocery_checklist/templates/grocery_checklist/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grocery Checklist</title>
+    <style>
+        table {
+            border: 2px solid black;
+            border-collapse: collapse;
+            width: 60%;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 2px solid black;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Grocery Checklist</h1>
+
+    <!-- Form to select grocery items -->
+    <form method="POST">
+        {% csrf_token %}
+        <div>
+            {% for item in grocery_items %}
+                <!-- Check if the item is in the selected list and add checked attribute -->
+                <input type="checkbox" name="{{ item.name }}" id="{{ item.name }}"
+                    {% if item.name in selected_item_names %}checked{% endif %}>
+                <label for="{{ item.name }}">{{ item.name }}</label><br>
+            {% endfor %}
+        </div>
+
+        <br>
+        <button type="submit">Add Item</button>
+    </form>
+
+    {% if selected_items %}
+        <h2>Selected Items</h2>
+        <table>
+            <tr>
+                <th>Item</th>
+                <th>Price</th>
+            </tr>
+            {% for item in selected_items %}
+            <tr>
+                <td>{{ item.name }}</td>
+                <td>${{ item.price }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+</body>
+</html>
