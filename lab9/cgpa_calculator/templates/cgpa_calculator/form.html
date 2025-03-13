@@ -1,0 +1,12 @@
+<!-- cgpa_calculator/templates/cgpa_calculator/form.html -->
+<html>
+<head><title>CGPA Calculator</title></head>
+<body>
+    <h1>Enter Your Name and Total Marks</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Calculate</button>
+    </form>
+</body>
+</html>

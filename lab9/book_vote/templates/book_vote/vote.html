@@ -1,0 +1,18 @@
+<!-- book_vote/templates/book_vote/vote.html -->
+<html>
+<head><title>Vote for Book</title></head>
+<body>
+    <h1>How is the book "ASP.NET with C# by Vipul Prakashan?"</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">VOTE</button>
+    </form>
+    <h2>Current Vote Percentages:</h2>
+    <ul>
+        {% for choice, percentage in percentages.items %}
+            <li>{{ choice }}: {{ percentage|floatformat:2 }}%</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -1,0 +1,9 @@
+<!-- cgpa_calculator/templates/cgpa_calculator/result.html -->
+<html>
+<head><title>CGPA Result</title></head>
+<body>
+    <h1>Welcome {{ name }}</h1>
+    <p>Your CGPA is: {{ cgpa }}</p>
+    <a href="{% url 'calculate' %}">Go back and calculate again</a>
+</body>
+</html>
