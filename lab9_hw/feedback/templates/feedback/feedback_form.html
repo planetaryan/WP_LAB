@@ -1,0 +1,16 @@
+<!-- feedback/templates/feedback/feedback_form.html -->
+<html>
+<head><title>Courseware Feedback Form</title></head>
+<body>
+    <h1>Courseware Feedback Form</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit Form</button>
+    </form>
+
+    {% if message %}
+        <h2>{{ message }}</h2>
+    {% endif %}
+</body>
+</html>

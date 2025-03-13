@@ -1,0 +1,12 @@
+<!-- billing/templates/billing/billing_form.html -->
+<html>
+<head><title>Billing Form</title></head>
+<body>
+    <h1>Enter Billing Details</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Produce Bill</button>
+    </form>
+</body>
+</html>

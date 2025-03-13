@@ -1,0 +1,12 @@
+<!-- billing/templates/billing/bill_summary.html -->
+<html>
+<head><title>Bill Summary</title></head>
+<body>
+    <h1>Bill Summary</h1>
+    <p>Item Selected: {{ item }}</p>
+    <p>Categories: {{ categories }}</p>
+    <p>Quantity: {{ quantity }}</p>
+    <p>Total Amount: ${{ total }}</p>
+    <a href="{% url 'billing' %}">Go back</a>
+</body>
+</html>
