@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>People in Company</title>
+</head>
+<body>
+    <h1>Find People in a Company</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="company_name">Company Name:</label>
+        <input type="text" name="company_name" id="company_name">
+        <button type="submit">Search</button>
+    </form>
+    <h2>People working at "{{ company_name }}"</h2>
+    <ul>
+        {% for person, company, city in people %}
+            <li>{{ person }} works at {{ company }} and lives in {{ city }}</li>
+        {% endfor %}
+    </ul>
+    <br>
+    <a href="{% url 'add_works' %}">Add WORKS info</a><br>
+    <a href="{% url 'add_lives' %}">Add LIVES info</a>
+</body>
+</html>

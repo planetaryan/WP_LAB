@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Institute List</title>
+</head>
+<body>
+    <h1>List of Institutes</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        <label for="institute_list">Choose an Institute:</label>
+        <select id="institute_list" name="institute_name">
+            {% for institute in institutes %}
+                <option value="{{ institute.name }}">{{ institute.name }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+
+</body>
+</html>
