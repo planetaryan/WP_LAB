@@ -1,0 +1,21 @@
+<!-- product/templates/product/index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product List</title>
+</head>
+<body>
+    <h1>Products</h1>
+    <a href="{% url 'add_product' %}">Add New Product</a>
+    <ul>
+    {% for product in products %}
+        <li>
+            {{ product.title }} - ${{ product.price }}
+            <p>{{ product.description }}</p>
+        </li>
+    {% empty %}
+        <li>No products yet.</li>
+    {% endfor %}
+    </ul>
+</body>
+</html>

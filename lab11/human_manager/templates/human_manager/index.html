@@ -1,0 +1,57 @@
+<!-- human_manager/templates/human_manager/index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Human Manager</title>
+    <style>
+        .form-container { margin-top: 20px; }
+        .field { margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Human Manager</h1>
+    
+    <form method="post">
+        {% csrf_token %}
+        <select name="human_id" onchange="this.form.submit()">
+            <option value="">Select a person</option>
+            {% for human in humans %}
+                <option value="{{ human.id }}" {% if human.id == selected_human.id %}selected{% endif %}>
+                    {{ human.first_name }}
+                </option>
+            {% endfor %}
+        </select>
+    </form>
+
+    <div class="form-container">
+        <form method="post">
+            {% csrf_token %}
+            <input type="hidden" name="human_id" value="{{ selected_human.id }}">
+            <div class="field">
+                <label>First Name:</label><br>
+                <input type="text" name="first_name" value="{{ form.first_name.value|default:'' }}">
+            </div>
+            <div class="field">
+                <label>Last Name:</label><br>
+                <input type="text" name="last_name" value="{{ form.last_name.value|default:'' }}">
+            </div>
+            <div class="field">
+                <label>Phone:</label><br>
+                <input type="text" name="phone" value="{{ form.phone.value|default:'' }}">
+            </div>
+            <div class="field">
+                <label>Address:</label><br>
+                <textarea name="address">{{ form.address.value|default:'' }}</textarea>
+            </div>
+            <div class="field">
+                <label>City:</label><br>
+                <input type="text" name="city" value="{{ form.city.value|default:'' }}">
+            </div>
+            {% if selected_human %}
+                <button type="submit" name="update">Update</button>
+                <button type="submit" name="delete" onclick="return confirm('Are you sure?')">Delete</button>
+            {% endif %}
+        </form>
+    </div>
+</body>
+</html>
